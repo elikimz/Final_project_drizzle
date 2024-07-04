@@ -1,3 +1,18 @@
+DO $$ BEGIN
+ CREATE TYPE "public"."role" AS ENUM('admin', 'user');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "authentication" (
+	"auth_id" serial PRIMARY KEY NOT NULL,
+	"user_id" integer,
+	"password" varchar,
+	"created_at" timestamp DEFAULT now(),
+	"updated_at" timestamp DEFAULT now(),
+	"role" varchar(50) DEFAULT 'user'
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "bookings" (
 	"booking_id" serial PRIMARY KEY NOT NULL,
 	"user_id" integer NOT NULL,
@@ -67,7 +82,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "vehicle_specifications" (
-	"vehicle_id" serial PRIMARY KEY NOT NULL,
+	"vehicleSpec_id" serial PRIMARY KEY NOT NULL,
 	"manufacturer" varchar(255),
 	"model" varchar(255),
 	"year" integer,
@@ -87,6 +102,12 @@ CREATE TABLE IF NOT EXISTS "vehicles" (
 	"created_at" timestamp DEFAULT now(),
 	"updated_at" timestamp DEFAULT now()
 );
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "authentication" ADD CONSTRAINT "authentication_user_id_users_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("user_id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "bookings" ADD CONSTRAINT "bookings_user_id_users_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("user_id") ON DELETE no action ON UPDATE no action;
@@ -125,7 +146,7 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "vehicles" ADD CONSTRAINT "vehicles_vehicleSpec_id_vehicle_specifications_vehicle_id_fk" FOREIGN KEY ("vehicleSpec_id") REFERENCES "public"."vehicle_specifications"("vehicle_id") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "vehicles" ADD CONSTRAINT "vehicles_vehicleSpec_id_vehicle_specifications_vehicleSpec_id_fk" FOREIGN KEY ("vehicleSpec_id") REFERENCES "public"."vehicle_specifications"("vehicleSpec_id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

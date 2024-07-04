@@ -1,9 +1,72 @@
 {
-  "id": "281de352-2b0f-47a8-8b09-6e8c508aee80",
+  "id": "c1d5601c-6c50-4b57-b668-2409714efada",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.authentication": {
+      "name": "authentication",
+      "schema": "",
+      "columns": {
+        "auth_id": {
+          "name": "auth_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'user'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "authentication_user_id_users_user_id_fk": {
+          "name": "authentication_user_id_users_user_id_fk",
+          "tableFrom": "authentication",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "public.bookings": {
       "name": "bookings",
       "schema": "",
@@ -468,8 +531,8 @@
       "name": "vehicle_specifications",
       "schema": "",
       "columns": {
-        "vehicle_id": {
-          "name": "vehicle_id",
+        "vehicleSpec_id": {
+          "name": "vehicleSpec_id",
           "type": "serial",
           "primaryKey": true,
           "notNull": true
@@ -580,15 +643,15 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "vehicles_vehicleSpec_id_vehicle_specifications_vehicle_id_fk": {
-          "name": "vehicles_vehicleSpec_id_vehicle_specifications_vehicle_id_fk",
+        "vehicles_vehicleSpec_id_vehicle_specifications_vehicleSpec_id_fk": {
+          "name": "vehicles_vehicleSpec_id_vehicle_specifications_vehicleSpec_id_fk",
           "tableFrom": "vehicles",
           "tableTo": "vehicle_specifications",
           "columnsFrom": [
             "vehicleSpec_id"
           ],
           "columnsTo": [
-            "vehicle_id"
+            "vehicleSpec_id"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"
@@ -598,7 +661,16 @@
       "uniqueConstraints": {}
     }
   },
-  "enums": {},
+  "enums": {
+    "public.role": {
+      "name": "role",
+      "schema": "public",
+      "values": [
+        "admin",
+        "user"
+      ]
+    }
+  },
   "schemas": {},
   "_meta": {
     "columns": {},
