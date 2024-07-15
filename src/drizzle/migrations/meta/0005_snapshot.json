@@ -1,6 +1,6 @@
 {
-  "id": "1f5dedbe-5eb8-4fd4-a7e6-68812eabc66d",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "16e13d5b-f9cd-4179-a0e1-8ccd95177efe",
+  "prevId": "05eb4312-94f3-4618-94c6-3484e4c53e9f",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -26,33 +26,16 @@
           "primaryKey": false,
           "notNull": false
         },
-        "full_name": {
-          "name": "full_name",
-          "type": "varchar(90)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "email": {
-          "name": "email",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "contact_phone": {
-          "name": "contact_phone",
-          "type": "varchar(20)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "address": {
-          "name": "address",
-          "type": "text",
+        "username": {
+          "name": "username",
+          "type": "varchar(50)",
           "primaryKey": false,
           "notNull": false
         },
         "role": {
           "name": "role",
-          "type": "varchar(50)",
+          "type": "role",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'user'"
@@ -84,20 +67,12 @@
           "columnsTo": [
             "user_id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "authentication_email_unique": {
-          "name": "authentication_email_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "public.bookings": {
       "name": "bookings",

@@ -1,6 +1,6 @@
 {
-  "id": "1f5dedbe-5eb8-4fd4-a7e6-68812eabc66d",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "6513d30c-12fe-41aa-b8ec-9a2dacd83f9f",
+  "prevId": "1cdcd479-a4b4-42ce-92bc-de943ca4448d",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -26,33 +26,16 @@
           "primaryKey": false,
           "notNull": false
         },
-        "full_name": {
-          "name": "full_name",
-          "type": "varchar(90)",
-          "primaryKey": false,
-          "notNull": false
-        },
         "email": {
           "name": "email",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
         },
-        "contact_phone": {
-          "name": "contact_phone",
-          "type": "varchar(20)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "address": {
-          "name": "address",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "role": {
           "name": "role",
-          "type": "varchar(50)",
+          "type": "role",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'user'"
@@ -84,7 +67,7 @@
           "columnsTo": [
             "user_id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },

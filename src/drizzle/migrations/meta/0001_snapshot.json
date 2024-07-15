@@ -1,6 +1,6 @@
 {
-  "id": "1f5dedbe-5eb8-4fd4-a7e6-68812eabc66d",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "b6ac242a-4690-4b79-b460-d682bdca2185",
+  "prevId": "1f5dedbe-5eb8-4fd4-a7e6-68812eabc66d",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -84,7 +84,7 @@
           "columnsTo": [
             "user_id"
           ],
-          "onDelete": "no action",
+          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },

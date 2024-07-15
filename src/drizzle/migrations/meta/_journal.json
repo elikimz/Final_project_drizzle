@@ -5,8 +5,57 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1720100009927,
-      "tag": "0000_yellow_apocalypse",
+      "when": 1720626591265,
+      "tag": "0000_workable_alex_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1720693133991,
+      "tag": "0001_lazy_molecule_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1720788819356,
+      "tag": "0002_yellow_lizard",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1720809784355,
+      "tag": "0003_cold_longshot",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1720810107154,
+      "tag": "0004_curious_hellfire_club",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1720811701050,
+      "tag": "0005_lethal_abomination",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1720815796218,
+      "tag": "0006_magical_iron_lad",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1720815868549,
+      "tag": "0007_tough_ultron",
       "breakpoints": true
     }
   ]

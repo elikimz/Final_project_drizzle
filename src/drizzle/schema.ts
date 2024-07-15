@@ -7,6 +7,7 @@ export const Users = pgTable("users", {
     email: varchar("email", { length: 255 }).unique(),
     contact_phone: varchar("contact_phone", { length: 20 }),
     address: text("address"),
+     password: varchar('password', { length: 255 }),
     role: varchar("role", { length: 10 }).default("user"),
     created_at: timestamp("created_at").defaultNow(),
     updated_at: timestamp("updated_at").defaultNow(),
@@ -158,11 +159,13 @@ export const fleetManagementRelations = relations(FleetManagement, ({ one }) => 
 export const roleEnum = pgEnum("role", ["admin", "user"])
 export const Auth = pgTable("authentication", {
     id: serial("auth_id").primaryKey(),
-    user_id: integer("user_id").references(() => Users.id),
+    user_id: integer("user_id").references(() => Users.id,{onDelete:"cascade"}),
     password: varchar("password"),
+    email: varchar("email", { length: 255 }).unique(),
+    role: roleEnum("role").default("user"),
     created_at: timestamp("created_at").defaultNow(),
     updated_at: timestamp("updated_at").defaultNow(),
-    role: varchar("role", { length: 50 }).default("user"),
+  
    
 });
 

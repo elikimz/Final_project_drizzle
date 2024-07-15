@@ -1,0 +1,1 @@
+ALTER TABLE "authentication" ADD COLUMN "username" varchar(50);

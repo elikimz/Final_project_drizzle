@@ -8,9 +8,14 @@ CREATE TABLE IF NOT EXISTS "authentication" (
 	"auth_id" serial PRIMARY KEY NOT NULL,
 	"user_id" integer,
 	"password" varchar,
+	"full_name" varchar(90),
+	"email" varchar(255),
+	"contact_phone" varchar(20),
+	"address" text,
+	"role" varchar(50) DEFAULT 'user',
 	"created_at" timestamp DEFAULT now(),
 	"updated_at" timestamp DEFAULT now(),
-	"role" varchar(50) DEFAULT 'user'
+	CONSTRAINT "authentication_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "bookings" (
@@ -75,6 +80,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"email" varchar(255),
 	"contact_phone" varchar(20),
 	"address" text,
+	"password" varchar(255),
 	"role" varchar(10) DEFAULT 'user',
 	"created_at" timestamp DEFAULT now(),
 	"updated_at" timestamp DEFAULT now(),
